@@ -38,10 +38,10 @@ const Header = () => {
           </button>
         </DesktopActionGroup>
         <Logo />
-        <DesktopActionGroup position="end" direction="column" gap="8px">
+        <SubscribeWrapper>
           <Button>SUBSCRIBE</Button>
           <Link href="/">Already a subscriber?</Link>
-        </DesktopActionGroup>
+        </SubscribeWrapper>
       </MainHeader>
     </header>
   );
@@ -75,16 +75,21 @@ const ActionGroup = styled.div`
   }
 `;
 
+const SubscribeWrapper = styled.div`
+  display: none;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: revert;
+    position: relative;
+    justify-self: end;
+  }
+`;
+
 const DesktopActionGroup = styled(ActionGroup)`
   display: none;
 
   @media ${QUERIES.laptopAndUp} {
     display: flex;
-    justify-self: ${(p) => p.position || "start"};
-    flex-direction: ${(p) => p.direction || "row"};
-    align-items: center;
-    justify-content: flex-end;
-    gap: ${(p) => p.gap || "24px"};
   }
 `;
 
@@ -95,11 +100,19 @@ const MainHeader = styled(MaxWidthWrapper)`
   margin-top: 32px;
   margin-bottom: 48px;
 
+  @media ${QUERIES.tabletAndUp} {
+    margin-top: 48px;
+    margin-bottom: 72px;
+  }
+
   @media ${QUERIES.laptopAndUp} {
+    margin-top: 16px;
+    margin-bottom: 72px;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    align-items: revert;
+    align-items: center;
     justify-content: revert;
+    justify-items: start;
   }
 `;
 
@@ -109,6 +122,10 @@ const Link = styled.a`
   font-style: italic;
   font-size: calc((14 / 16) * 1rem);
   color: var(--color-gray-900);
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin-top: 8px;
 `;
 
 export default Header;
