@@ -49,7 +49,7 @@ const Abstract = styled.p`
     -webkit-line-clamp: 16;
   }
 
-  @media ${QUERIES.labtopAndUp} {
+  @media ${QUERIES.laptopAndUp} {
     -webkit-line-clamp: 10;
   }
 `;
